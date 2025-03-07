@@ -1,0 +1,5 @@
+build/
+linker.ld
+NewFlop.img
+qemu.log
+kmain.c
