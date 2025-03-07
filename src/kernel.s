@@ -48,8 +48,8 @@ gdt_end:
 gdt_descriptor:
 	dw gdt_end - gdt_start - 1
 	dd gdt_start
-CODESEG equ gdt_code - gdt_start - 1
-DATASEG equ gdt_data - gdt_start - 1
+CODESEG equ gdt_code - gdt_start 
+DATASEG equ gdt_data - gdt_start 
 
 [bits 32]
 _ProtectedMode:
