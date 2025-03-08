@@ -12,7 +12,7 @@ sti
 
 read:
 	mov ah, 0x02
-	mov al, 35
+	mov al, 8
 	mov ch, 0
 	mov cl, 2
 	mov dh, 0
@@ -33,9 +33,11 @@ done:
 err:
 	mov si, errormsg
 	call print
-	mov ah, 0x00
+	mov ah, 0x01
 	int 16h
-	int 19h
+	cmp al, 0
+	jz read
+	; haha get your floppies broken
 
 errormsg: db "Error! Press any key to restart", 0
 times 510-($-$$) db 0
