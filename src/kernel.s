@@ -20,15 +20,40 @@ _start:
 	mov eax, cr0
 	or eax, 1
 	mov cr0, eax
-	jmp dword CODESEG:_kernel_start
+	jmp dword 0x08:_kernel_start
 
 
 gdt_start:
 	dd 0x0
 	dd 0x0
-gdt_code:
 	dw 0xFFFF
 	dw 0x0
 	db 0x0
 	db 0b10011110
-	db 0b11110011
+	db 0b11001111
+	db 0x0
+	
+	dw 0xffff
+	dw 0x0
+        db 0x0
+        db 0b10010010
+        db 0b11001111
+        db 0x0
+gdt_end:
+
+	
+gdt_descriptor:
+	dw gdt_end - gdt_start - 1
+	dd gdt_start
+
+
+
+
+[bits 32]
+_kernel_start:
+	hlt
+	jmp $
+	
+	
+	
+		
