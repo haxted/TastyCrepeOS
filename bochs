@@ -1,5 +1,0 @@
-megs: 124
-
-floppya: 1_44=NewFlop.img, status=inserted
-boot: a
-log: log.txt

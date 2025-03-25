@@ -1,5 +1,6 @@
-org 0x8000
 bits 16
+extern kmain
+
 
 cli
 mov ax, 0x00
@@ -12,6 +13,13 @@ sti
 mov ah, 0x00
 mov al, 0x03
 int 0x10
+
+
+
+
+
+
+
 jmp _start
 
 _start:
@@ -51,9 +59,16 @@ gdt_descriptor:
 
 [bits 32]
 _kernel_start:
-	hlt
+	mov ax, 0x10
+	mov es, ax
+	mov ds, ax
+	mov gs, ax
+	mov fs, ax
+	mov ss, ax
+	mov ebp, 0x9a00
+	mov ebp, esp
+	call kmain
+
 	jmp $
 	
 	
-	
-		
