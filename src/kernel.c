@@ -7,6 +7,7 @@
 void kmain(void) {
 	puts("The system will panic shortly for testing.\n");
 	panic("Test panic, system halted");
+	for(;;);
 
 }
 

@@ -9,3 +9,7 @@ void* malloc(uint32_t size) {
         memoff += size;
         return MLC_PTR;
 }
+
+void mreset() {
+	memoff = 0;
+}
