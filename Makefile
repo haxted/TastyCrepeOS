@@ -1,8 +1,6 @@
 CC = clang
 LD = ld.gold
-CFLAGS = -nostdlib -c -Isrc/include --target=i686-elf -Wall -Wextra -Werror 
-SRC = $(wildcard src/*.c)
-INCLUDES = $(wildcard src/include/*.c)
+CFLAGS = -nostdlib -c -Isrc/include --target=i686-elf -Wall -Wextra -Werror -fno-pie -fno-pic
 
 
 all:
