@@ -1,10 +1,15 @@
-CC = tcc
+CC = clang
 LD = ld.gold
-CFLAGS = -nostdlib -c  -m32
+CFLAGS = -nostdlib -c -Isrc/include --target=i686-elf -Wall -Wextra -Werror 
+SRC = $(wildcard src/*.c)
+INCLUDES = $(wildcard src/include/*.c)
 
-all:	
-	nasm -f bin src/kernel.s -o build/stage2.bin 
-	nasm -f bin src/stage1.s -o build/stage1.bin
-	dd if=/dev/zero of=NewFlop.img bs=512 count=2880
-	dd if=build/stage1.bin of=NewFlop.img seek=0 bs=512 conv=notrunc
-	dd if=build/stage2.bin of=NewFlop.img seek=2 bs=512 conv=notrunc
+
+all:
+	mkdir -p build/
+	$(CC) $(CFLAGS) src/include/stdio.c -o build/stdio.o
+	$(CC) $(CFLAGS) src/include/io.c -o build/io.o
+	$(CC) $(CFLAGS) src/include/stdlib.c -o build/stdlib.o
+	$(CC) $(CFLAGS) src/include/idt.c -o build/idt.o
+	$(CC) $(CFLAGS) src/kernel.c -o build/kernel.o
+	nasm -felf32 src/include/idt.s -o build/idt.s.o

@@ -1,7 +1,6 @@
 #ifndef IDT_H
 #define IDT_H
 #include <stdint.h>
-#include <handlers.h>
 
 typedef struct InterruptDescriptor {
 	uint16_t offset1;

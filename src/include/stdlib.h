@@ -9,8 +9,8 @@
 
 
 
-#define MEMPOOL 1024 * 1024
-static int MEMPOOL[MEMPOOL];
+#define MEMPOOL_SZ (1024 * 1024)
+static int MEMPOOL[MEMPOOL_SZ];
 static uint32_t memoff = 0;
 
 void* malloc(uint32_t size);

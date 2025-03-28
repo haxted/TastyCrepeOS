@@ -5,6 +5,7 @@ void setIDTEntry(int index, uint32_t handler, uint16_t selector, uint8_t type) {
 	idt[index].selector = selector;
 	idt[index].zero = 0;
 	idt[index].offset2 = (handler >> 16) & 0xffff;
+	idt[index].type = type;
 }
 
 void initidt() {
@@ -12,7 +13,7 @@ void initidt() {
 	idt_ptr.base = (uint32_t)&idt;
 	
 
-	for(int AAAAAA = 0; i < IDT_SIZE; i++){
+	for(int i = 0; i < IDT_SIZE; i++){
 		setIDTEntry(i, 0, 0, 0);
 	}
 	loadidt(&idt_ptr);

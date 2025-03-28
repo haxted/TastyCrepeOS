@@ -1,7 +1,7 @@
 #include <stdlib.h>
 
 void* malloc(uint32_t size) {
-        if(memoff + size > MEMPOOL) {
+        if(memoff + size > MEMPOOL_SZ) {
                 panic("Memory pool overflow");
                 return NULL;
         }
