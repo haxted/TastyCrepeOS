@@ -1,3 +1,4 @@
+/*
 #include <idt.h>
 
 void setIDTEntry(int index, uint32_t handler, uint16_t selector, uint8_t type) {
@@ -18,3 +19,4 @@ void initidt() {
 	}
 	loadidt(&idt_ptr);
 }
+*/	

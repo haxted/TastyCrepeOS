@@ -18,12 +18,25 @@ int 0x10
 jmp _start
 
 _start:
+	mov ah, 0x02
+	mov cl, 2
+	mov al, 4
+	mov dh, 0
+	mov ch, 0
+	mov dl, 0x00
+	mov bx, 0x9a00
+	int 13h
+	jc err
+err:
+	hlt
+
+pmode:
 	cli
 	lgdt [gdt_descriptor]
 	mov eax, cr0
 	or eax, 1
 	mov cr0, eax
-	jmp dword 0x08:pmode
+	jmp dword 0x00:0x9a00
 
 gdt_start:
 	dd 0
@@ -51,17 +64,8 @@ gdt_descriptor:
 
 
 
-[bits 32]
-pmode:
-	mov ax, 0x10
-	mov es, ax
-	mov ds, ax
-	mov fs, ax
-	mov gs, ax
-	mov ss, ax
-	mov ebp, 0x9a00
-	mov esp, ebp
 
-	call readKernel
-	call readELF
-	call jumpToKernel
+
+
+times 512-($-$$) db 0
+

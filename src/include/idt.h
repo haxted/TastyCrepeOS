@@ -1,3 +1,4 @@
+/*
 #ifndef IDT_H
 #define IDT_H
 #include <stdint.h>
@@ -26,3 +27,5 @@ extern void loadidt(idtptr* idt_ptr);
 void initidt();
 
 #endif
+
+*/
