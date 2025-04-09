@@ -13,13 +13,42 @@ sti
 mov ah, 0x00
 mov al, 0x03
 int 0x10
+struc elfhdr
+	e_ident: db 16 dup(0)
+	e_type: resb 2
+	e_machine: resb 2
+	e_version: resd 1
+	e_entry: resd 1
+	e_phoff: resd 1
+	e_shoff: resd 1
+	e_flags: resd 1
+	e_ehsize: resb 2
+	e_phentsize: resb 2
+	e_phnum: resb 2
+	e_shentsize: resb 2
+	e_shnum: resb 2
+	e_shstrndx: resb 2
+endstruc
 
 
 jmp _start
+elfR:
+	cmp byte [bx],  0x7f
+	jne err
+	cmp byte [bx+1], 'E'
+	jne err
+	cmp byte [bx+2], 'L'
+	jne err
+	cmp byte [bx+3], 'F'
+	je isELF
+
+isELF:
+	add bx, 4
+
 
 _start:
 	mov ah, 0x02
-	mov cl, 2
+	mov cl, 3
 	mov al, 4
 	mov dh, 0
 	mov ch, 0
@@ -27,8 +56,10 @@ _start:
 	mov bx, 0x9a00
 	int 13h
 	jc err
+	jnc elfR
 err:
 	hlt
+	jmp err
 
 pmode:
 	cli

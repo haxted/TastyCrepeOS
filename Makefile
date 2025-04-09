@@ -1,6 +1,6 @@
-CC = clang
+CC = cc
 LD = ld.gold
-CFLAGS = -nostdlib -c -Isrc/include --target=i686-elf -Wall -Wextra -Werror -fno-pie -fno-pic
+CFLAGS = -nostdlib -c -Isrc/include  -Wall -Wextra -Werror -fno-pie -fno-pic  -ffreestanding -g  -fstack-protector  -fno-strict-aliasing --target=i686-elf
 
 
 all:
@@ -11,3 +11,5 @@ all:
 	$(CC) $(CFLAGS) src/include/idt.c -o build/idt.o
 	$(CC) $(CFLAGS) src/kernel.c -o build/kernel.o
 	nasm -felf32 src/include/idt.s -o build/idt.s.o
+	nasm -felf32 src/kernload.s -o build/kernload.o
+	ld.gold -Ttext 0x1000 -o build/kernel.elf build/kernload.o build/kernel.o build/stdio.o build/stdlib.o build/io.o build/idt.o build/idt.s.o -nostdlib 

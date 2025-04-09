@@ -1,6 +1,6 @@
 #include <stdio.h>
 int pos = 0;
-
+char* bfr = (char*)0xb8000;
 void putc(char c) {
 	if(c == '\n') {
 		pos += (80 - (pos % 80));

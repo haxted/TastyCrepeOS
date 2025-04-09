@@ -1,6 +1,9 @@
-#include <stdio.h>
-#include <stdint.h>
-#include <stdlib.h>
-#include <io.h>
 #include <kbd.h>
+
+
+void setScancodeSet(uint8_t scst) {
+	outb(0xf0, PS2_DATA);
+}
+
+
 

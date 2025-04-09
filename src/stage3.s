@@ -21,6 +21,15 @@ start:
 ; THIS IS NOT FINISHED
 ; UNDER CONSTRUCTION
 
+initDisk0Motor:
+	mov dx, 0x3f2
+	inb al, dx
+	or al, 16
+	outb dx, al
+
+	
+
+	
 
 
 
