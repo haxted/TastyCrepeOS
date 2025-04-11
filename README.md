@@ -1,4 +1,0 @@
-# TastyCrepeOS
-
----
-Dont use this
