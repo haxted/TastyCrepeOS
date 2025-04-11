@@ -1,4 +1,4 @@
 build/
-include/*.pch
+src/include/*.pch
 sum*
 sum
