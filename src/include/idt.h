@@ -2,6 +2,7 @@
 #ifndef IDT_H
 #define IDT_H
 #include <stdint.h>
+#include <io.h>
 
 typedef struct InterruptDescriptor {
 	uint16_t offset1;
@@ -18,8 +19,6 @@ typedef struct idtptr {
 
 #define IDT_SIZE 256
 
-static idtentry idt[IDT_SIZE];
-idtptr idt_ptr;
 
 void setIDTEntry(uint8_t index, void* handlr, uint8_t type);
 

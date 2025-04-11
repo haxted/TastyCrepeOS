@@ -3,10 +3,13 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include <kernel.h>
+#include <idt.h>
+#include <io.h>
 
 void kmain(void) {
-	puts("The system will panic shortly for testing.\n");
-	panic("Test panic, system halted");
+	initidt();
+	welcome();
+
 	for(;;);
 
 }
@@ -14,8 +17,21 @@ void kmain(void) {
 void panic(const char *r) {
 	puts("Kernel panic: ");
 	puts(r);
-	while(1){	
+	for(;;) {	
 		asm("hlt");
 	}
 }
+
+int welcome(void) {
+	puts("Welcome to the TastyCrepeOS kernel!");
+        putc('\n');
+        puts("Build number ");
+        puts(TC_BUILD);
+        putc('\n');
+        puts("Version: ");
+        puts(TC_VER);
+        putc('\n');
+	return 0;
+}
+
 
