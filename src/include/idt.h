@@ -1,4 +1,4 @@
-/*
+
 #ifndef IDT_H
 #define IDT_H
 #include <stdint.h>
@@ -18,14 +18,13 @@ typedef struct idtptr {
 
 #define IDT_SIZE 256
 
-idtentry idt[IDT_SIZE];
+static idtentry idt[IDT_SIZE];
 idtptr idt_ptr;
 
-void setIDTEntry(int index, uint32_t handler, uint16_t selector, uint8_t type);
+void setIDTEntry(uint8_t index, void* handlr, uint8_t type);
 
 extern void loadidt(idtptr* idt_ptr);
 void initidt();
 
 #endif
 
-*/

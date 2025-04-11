@@ -33,17 +33,16 @@ endstruc
 
 jmp _start
 elfR:
-	cmp byte [bx],  0x7f
+	cmp dword [bx], 0x7f
 	jne err
-	cmp byte [bx+1], 'E'
-	jne err
-	cmp byte [bx+2], 'L'
-	jne err
-	cmp byte [bx+3], 'F'
 	je isELF
 
 isELF:
-	add bx, 4
+	mov ax, [bx + 0x1c]
+	mov [elfhdr.e_phoff], bx
+
+
+
 
 
 _start:
