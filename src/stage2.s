@@ -34,16 +34,11 @@ endstruc
 jmp _start
 elfR:
 	cmp byte [bx],  0x7f
-	jne err
-	cmp byte [bx+1], 'E'
-	jne err
-	cmp byte [bx+2], 'L'
-	jne err
-	cmp byte [bx+3], 'F'
 	je isELF
 
 isELF:
 	add bx, 4
+
 
 
 _start:
