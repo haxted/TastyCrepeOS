@@ -5,4 +5,5 @@
 
 void puts(const char *str);
 void putc(char c);
+void clrscr();
 #endif

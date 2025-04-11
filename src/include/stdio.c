@@ -24,5 +24,11 @@ void puts(const char *str) {
 	putc('\n');
 }
 
+void clrscr() {
+	for(int i = 0; i < 80*25; ++i) {
+		putc(' ');
+	}
+}
+
 
 

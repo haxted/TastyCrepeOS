@@ -8,6 +8,7 @@
 
 void kmain(void) {
 	initidt();
+	clrscr();
 	welcome();
 
 	for(;;);
@@ -15,6 +16,7 @@ void kmain(void) {
 }
 
 void panic(const char *r) {
+	clrscr();
 	puts("Kernel panic: ");
 	puts(r);
 	for(;;) {	
