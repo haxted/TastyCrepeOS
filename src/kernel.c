@@ -18,19 +18,16 @@ void panic(const char *r) {
 	puts("Kernel panic: ");
 	puts(r);
 	for(;;) {	
-		asm("hlt");
+		asm("cli; hlt");
 	}
 }
 
 int welcome(void) {
-	puts("Welcome to the TastyCrepeOS kernel!");
-        putc('\n');
+	puts("Welcome to the TastyCrepeOS kernel");
         puts("Build number ");
         puts(TC_BUILD);
-        putc('\n');
         puts("Version: ");
         puts(TC_VER);
-        putc('\n');
 	return 0;
 }
 

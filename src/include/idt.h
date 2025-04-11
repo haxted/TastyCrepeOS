@@ -19,6 +19,7 @@ typedef struct idtptr {
 
 #define IDT_SIZE 256
 
+extern void gpfhandle();
 
 void setIDTEntry(uint8_t index, void* handlr, uint8_t type);
 

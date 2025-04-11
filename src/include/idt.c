@@ -1,6 +1,8 @@
 
 #include <idt.h>
 #include <stdio.h>
+#include <kernel.h>
+
 static idtentry idt[IDT_SIZE];
 idtptr idt_ptr;
 
@@ -17,7 +19,7 @@ void setIDTEntry(uint8_t index, void* handlr, uint8_t type) {
 
 void initidt() {
 	puts("HEY HEY HEY WE GONNA INIT THE IDT, IF THERES ANY PROBLEMS CONTACT rakoczijohnii@gmail.com");
-	puts("\n");
+	putc('\n');
 	idt_ptr.base = (unsigned long)&idt[0];
 	idt_ptr.limit = (uint16_t)sizeof(idtentry) * IDT_SIZE - 1;
 	
@@ -25,5 +27,10 @@ void initidt() {
 	for(int i = 0; i < 32; ++i){
 		setIDTEntry(i, 0, 0x8e);
 	}
+	setIDTEntry(0x0d, (void*)gpfhandle, 0xf);
 	loadidt(&idt_ptr);
-}	
+}
+
+void gpfhandleC() {
+	panic("General protection fault!");
+}
