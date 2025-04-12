@@ -1,10 +1,12 @@
 #include <stdio.h>
-#include <io.h>
+static const unsigned char font[] = {
+#embed "font.bin"
+};
+unsigned char* fontmem = (unsigned char*)0xA0000;
 
 int pos = 0;
 char* bfr = (char*)0xb8000;
 void putc(char c) {
-	outb(0x3f8, c);
 
 	if(c == '\n') {
 		pos += (80 - (pos % 80));
@@ -27,6 +29,12 @@ void puts(const char *str) {
 void clrscr() {
 	for(int i = 0; i < 80*25; ++i) {
 		putc(' ');
+	}
+}
+
+void NewFont() {
+	for(int x = 0; x < 4096; x++) {
+		fontmem[x] = font[x];
 	}
 }
 

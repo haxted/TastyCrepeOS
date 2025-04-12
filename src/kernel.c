@@ -20,7 +20,7 @@ void panic(const char *r) {
 	puts("Kernel panic: ");
 	puts(r);
 	for(;;) {	
-		asm("cli; hlt");
+		__asm__("cli; hlt");
 	}
 }
 

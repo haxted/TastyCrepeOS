@@ -9,13 +9,13 @@
 #define PS2_DATA 0x60
 #define PS2_STATUS 0x64
 
-void setScancodeSet(uint8_t scst);
 
+void initKbd();
+void KbdTakeInput();
+void KbdTakeInputP();
+extern void KbdTakeInputPA();
 
-/* Not finished
- * Come back when IDT is finished
- * 2025-4-6
- */
+// HELLO AMERICA!
 
 #endif
 

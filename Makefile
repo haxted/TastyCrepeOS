@@ -1,6 +1,6 @@
 CC = cc
 LD = ld.gold
-CFLAGS = -nostdlib -c -Isrc/include  -Wall -Wextra -Werror -fno-pie -fno-pic  -ffreestanding -g  -fno-stack-protector  -fno-strict-aliasing --target=i686-elf -fno-omit-frame-pointer
+CFLAGS = -nostdlib -c -Isrc/include  -Wall -Wextra -Werror -fno-pie -fno-pic  -ffreestanding -g  -fno-stack-protector  -fno-strict-aliasing --target=i686-elf -fno-omit-frame-pointer -std=c23 -fno-builtin
 
 
 all:
