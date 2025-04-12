@@ -2,7 +2,7 @@
 #define KERNEL_H
 #define TC_VER "0.6a"
 #define TC_BUILD "16252"
-#define TC_MOTB "Making square wheels to better admire the round ones"
+#define TC_MOTB "Now with good fonts!"
 
 void kmain(void);
 void panic(const char *r);
