@@ -4,7 +4,9 @@
 
  loadidt:
 	mov eax, [esp+4]
+	nop
 	lidt [eax]
+	sti
 	ret
 
 gpfhandle:
