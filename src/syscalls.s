@@ -24,8 +24,6 @@ int80hstb:
 systmcall:
 	cmp edi, 0		; SystmPutString - puts in C
 	je SystmPutString
-	mov al, 20h
-	out 20h, al
 	ret
 SystmPutString:
 	push esi

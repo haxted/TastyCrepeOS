@@ -2,5 +2,5 @@
 
 
 void initsyscalls() {
-	setIDTEntry(0x80, (void*)int80hstb, 0x8e);
+	setIDTEntry(0x80, (uint32_t)int80hstb, 0x8e);
 }

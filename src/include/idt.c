@@ -6,7 +6,7 @@
 static idtentry idt[IDT_SIZE];
 idtptr idt_ptr;
 
-void setIDTEntry(uint8_t index, void* handlr, uint8_t type) {
+void setIDTEntry(uint8_t index, uint32_t handlr, uint8_t type) {
 	puts("Setting IDT Entry");
 	puts("\n");
 	idtentry* desc = &idt[index];
@@ -27,7 +27,7 @@ void initidt() {
 	for(int i = 0; i < 32; ++i){
 		setIDTEntry(i, 0, 0x8e);
 	}
-	setIDTEntry(0x0d, (void*)gpfhandle, 0xf);
+	setIDTEntry(0x0d, (uint32_t)gpfhandle, 0x8f);
 	loadidt(&idt_ptr);
 }
 
