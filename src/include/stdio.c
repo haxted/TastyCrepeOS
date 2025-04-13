@@ -6,7 +6,7 @@ unsigned char* fontmem = (unsigned char*)0xA0000;
 
 int pos = 0;
 char* bfr = (char*)0xb8000;
-void putc(char c) {
+void kputc(char c) {
 
 	if(c == '\n') {
 		pos += (80 - (pos % 80));
@@ -19,16 +19,16 @@ void putc(char c) {
 
 
 
-void puts(const char *str) {
+void kputs(const char *str) {
 	while(*str){
-		putc(*str++);
+		kputc(*str++);
 	}
-	putc('\n');
+	kputc('\n');
 }
 
 void clrscr() {
 	for(int i = 0; i < 80*25; ++i) {
-		putc(' ');
+		kputc(' ');
 	}
 }
 
@@ -38,5 +38,9 @@ void NewFont() {
 	}
 }
 
-
+void kprintf(const char* str) {
+	while(*str) {
+		kputc(*str++);
+	}
+}
 

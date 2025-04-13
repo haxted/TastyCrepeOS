@@ -3,7 +3,8 @@
 
 
 
-void puts(const char *str);
-void putc(char c);
+void kputs(const char *str);
+void kputc(char c);
 void clrscr();
+void kprintf(const char *str);
 #endif

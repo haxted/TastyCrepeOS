@@ -17,19 +17,19 @@ void kmain(void) {
 
 void panic(const char *r) {
 	clrscr();
-	puts("Kernel panic: ");
-	puts(r);
+	kprintf("Kernel panic: ");
+	kputs(r);
 	for(;;) {	
 		__asm__("cli; hlt");
 	}
 }
 
 int welcome(void) {
-	puts("Welcome to the TastyCrepeOS kernel");
-        puts("Build number ");
-        puts(TC_BUILD);
-        puts("Version: ");
-        puts(TC_VER);
+	kputs("Welcome to the TastyCrepeOS kernel!");
+        kprintf("Build number ");
+        kputs(TC_BUILD);
+        kprintf("Version: ");
+        kputs(TC_VER);
 	return 0;
 }
 

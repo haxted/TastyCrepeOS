@@ -7,8 +7,7 @@ static idtentry idt[IDT_SIZE];
 idtptr idt_ptr;
 
 void setIDTEntry(uint8_t index, uint32_t handlr, uint8_t type) {
-	puts("Setting IDT Entry");
-	puts("\n");
+	kputs("Setting IDT Entry");
 	idtentry* desc = &idt[index];
 	desc->offset1 = (uint32_t)handlr & 0xffff;
 	desc->selector = 0x8;
@@ -18,8 +17,7 @@ void setIDTEntry(uint8_t index, uint32_t handlr, uint8_t type) {
 }
 
 void initidt() {
-	puts("HEY HEY HEY WE GONNA INIT THE IDT, IF THERES ANY PROBLEMS CONTACT rakoczijohnii@gmail.com");
-	putc('\n');
+	kputs("HEY HEY HEY WE GONNA INIT THE IDT, IF THERES ANY PROBLEMS CONTACT rakoczijohnii@gmail.com");
 	idt_ptr.base = (unsigned long)&idt[0];
 	idt_ptr.limit = (uint16_t)sizeof(idtentry) * IDT_SIZE - 1;
 	

@@ -1,7 +1,8 @@
 global systmcall
 global int80hstb
 
-extern puts
+extern kputs
+extern kprintf
 
 int80hstb:
 	pusha
@@ -24,10 +25,18 @@ int80hstb:
 systmcall:
 	cmp edi, 0		; SystmPutString - puts in C
 	je SystmPutString
+	
+	cmp edi, 1
+	je SystmPutStringF
 	ret
 SystmPutString:
 	push esi
-	call puts
+	call kputs
+	pop esi
+	ret
+SystmPutStringF:
+	push esi
+	call kprintf
 	pop esi
 	ret
 	
