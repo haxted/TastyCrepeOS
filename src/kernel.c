@@ -5,11 +5,15 @@
 #include <kernel.h>
 #include <idt.h>
 #include <io.h>
+#include <syscalls.h>
 
 void kmain(void) {
 	initidt();
+	initsyscalls();
 	clrscr();
+	NewFont();
 	welcome();
+	
 
 	for(;;);
 

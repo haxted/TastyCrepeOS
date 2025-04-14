@@ -2,7 +2,7 @@ global KbdTakeInputPA
 extern KbdTakeInputP
 
 KbdTakeInputPA:
-	pusha
+	pushad
 	push ds
 	push es
 	push fs
@@ -11,7 +11,7 @@ KbdTakeInputPA:
 
 	call KbdTakeInputP
 
-	popa
+	popad
 	pop ds
 	pop es
 	pop fs

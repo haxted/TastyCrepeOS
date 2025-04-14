@@ -3,9 +3,13 @@ global int80hstb
 
 extern kputs
 extern kprintf
+extern clrscr
+extern clrscrC
+extern kputc
+extern printr
 
 int80hstb:
-	pusha
+	pushad
 	push ds
 	push es
 	push gs
@@ -14,7 +18,7 @@ int80hstb:
 
 	call systmcall
 
-	popa
+	popad
 	pop ds
 	pop fs
 	pop es
@@ -23,11 +27,28 @@ int80hstb:
 	iret
 
 systmcall:
-	cmp edi, 0		; SystmPutString - puts in C
-	je SystmPutString
+	cmp edi, 0
+	je $+2			; SystmPutString - puts in C
+	call SystmPutString
 	
 	cmp edi, 1
-	je SystmPutStringF
+	je $+2
+	call SystmPutStringF
+
+	cmp edi, 2
+	je $+2
+	call SystmClrScr
+
+	cmp edi, 3
+	je $+2
+
+	call SystmClrScrC
+
+	cmp edi, 4
+	je $+2
+	
+	call SystmPutStringR
+
 	ret
 SystmPutString:
 	push esi
@@ -39,6 +60,32 @@ SystmPutStringF:
 	call kprintf
 	pop esi
 	ret
-	
+SystmClrScr:
+	call clrscr
+	ret
+SystmClrScrC:
+	push esi
+	call clrscrC
+	pop esi
+	ret
+SystmPutChar:
+	push esi
+	push edx
+	call kputc
+	pop esi
+	pop edx
+	ret
+
+SystmPutStringR:
+	push esi
+	push edx
+	push ecx
+	push ebx
+	call printr
+	pop esi
+	pop edx
+	pop ecx
+	pop ebx
+	ret
 
 	

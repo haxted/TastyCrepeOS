@@ -10,12 +10,13 @@
 	ret
 
 gpfhandle:
-	pusha
+	pushad
 	push ds
 	push es
 	push fs
 	push gs
 	push ss
+
 	mov ax, 0x10
 	mov ds, ax
 	mov es, ax
@@ -23,9 +24,10 @@ gpfhandle:
 	mov gs, ax
 	mov ss, ax
 	cli
+
 	call gpfhandleC
 	sti
-	popa
+	popad
 	pop ds
 	pop es
 	pop fs
