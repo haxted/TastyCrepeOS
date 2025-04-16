@@ -51,7 +51,7 @@ void kprintf(const char* str) {
 	}
 }
 
-void printr(char c, int wid, int hei, uint8_t color) {
+void printr(char c, int wid, int hei, unsigned char color) {
 	for(int s = 0; s < wid*hei; s++) {
 		kputc(c, color);
 		if((s+1) % wid == 0) {

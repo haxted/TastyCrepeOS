@@ -13,22 +13,22 @@ sti
 mov ah, 0x00
 mov al, 0x03
 int 0x10
-struc elfhdr
-	e_ident: db 16 dup(0)
-	e_type: resb 2
-	e_machine: resb 2
-	e_version: resd 1
-	e_entry: resd 1
-	e_phoff: resd 1
-	e_shoff: resd 1
-	e_flags: resd 1
-	e_ehsize: resb 2
-	e_phentsize: resb 2
-	e_phnum: resb 2
-	e_shentsize: resb 2
-	e_shnum: resb 2
-	e_shstrndx: resb 2
-endstruc
+; struc elfhdr
+;	e_ident: db 16 dup(0)
+;	e_type: resb 2
+;	e_machine: resb 2
+;	e_version: resd 1
+;	e_entry: resd 1
+;	e_phoff: resd 1
+;	e_shoff: resd 1
+;	e_flags: resd 1
+;	e_ehsize: resb 2
+;	e_phentsize: resb 2
+;	e_phnum: resb 2
+;	e_shentsize: resb 2
+;	e_shnum: resb 2
+;	e_shstrndx: resb 2
+;endstruc
 
 
 jmp _start
@@ -38,8 +38,58 @@ elfR:
 	je isELF
 
 isELF:
-	mov ax, [bx + 0x1c]
-	mov [elfhdr.e_phoff], bx
+	add bx, 16
+	cmp word [bx], 2
+	jne err
+	add bx, 2
+	cmp word [bx], 3
+	jne err
+
+	add bx, 2
+	cmp word [bx], 1
+	jne err
+
+	mov dword eax, [bx]
+
+	add bx, 4
+	mov dword ecx, [bx]
+
+	mov edx, eax
+	add edx, ecx ; edx now contains the location of phdr
+
+	mov ebx, edx
+
+	add ebx, 4
+	mov dword [edx], esi
+	add edx, 4
+
+	mov dword [edx], edi
+	add edx, 8
+
+
+
+
+	mov dword [edx], ecx
+	mov edx, eax
+	
+
+	rep movsb
+
+	
+
+
+
+
+
+
+	
+
+
+
+
+
+	
+
 
 
 
@@ -67,7 +117,7 @@ pmode:
 	mov eax, cr0
 	or eax, 1
 	mov cr0, eax
-	jmp dword 0x00:0x9a00
+	jmp dword 0x08:relcs
 
 gdt_start:
 	dd 0
@@ -95,7 +145,17 @@ gdt_descriptor:
 
 
 
+[bits 32]
+relcs:
+	mov ax, 0x10
+	mov ds, ax
+	mov es, ax
+	mov fs, ax
+	mov gs, ax
+	mov ss, ax
+	mov esp, 0x8fff
 
+	jmp edx
 
 
 times 512-($-$$) db 0
