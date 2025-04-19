@@ -23,4 +23,5 @@ class IDT {
   
 };
 extern "C" void lidt(IDTPtr* idtptr);
+IDT Idt;
 #endif

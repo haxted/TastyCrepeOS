@@ -2,3 +2,5 @@ build/
 src/include/*.pch
 sum*
 sum
+src/main_tcwm.s
+src/main_tsh.s
