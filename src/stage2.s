@@ -48,7 +48,6 @@ isELF:
 	add bx, 2
 	cmp word [bx], 1
 	jne err
-
 	mov dword eax, [bx]
 
 	add bx, 4
