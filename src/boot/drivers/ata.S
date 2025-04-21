@@ -15,7 +15,7 @@ atas:
         popad
         pop ds
         pop es
-        ppp fs
+        pop fs
         pop gs
         pop ss
         iret
