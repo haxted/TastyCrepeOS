@@ -59,20 +59,21 @@ isELF:
 	mov ebx, edx
 
 	add ebx, 4
-	mov dword [edx], esi
+	mov dword esi, [edx]
 	add edx, 4
 
-	mov dword [edx], edi
+	mov dword edi, [edx]
 	add edx, 8
 
 
 
 
-	mov dword [edx], ecx
+	mov dword ecx, [edx]
 	mov edx, eax
 	
 
 	rep movsb
+ 
 
 	
 
