@@ -21,6 +21,7 @@ extern "C" void bmain() {
   Term::clrscr();
   Term::term_outs("Entered C++ section");
   Term::term_outc('\n');
+  Disk::ata_init();
   Disk::ata_rdisk(39, 61, KRNL_LD); // Reads ehhh into uhhhh from ermmmm
   Term::term_outs("Loaded the kernel");
   Term::term_outc('\n');
