@@ -1,6 +1,12 @@
 #pragma once
 #include <cstdint>
-#include "memcpy.h"
+#include "memcpy.hxx"
+#include "term.hxx"
+#include "hlt.hxx"
+
+#define ERR_NOTYPE "Kernel has no type, halting"
+#define ERR_NOMACHINE "Kernel has no machine(?), halting"
+#define ERR_WRONGARCH "Kernel has a bad architecture, halting"
 
 
 typedef uint32_t ElfAddr;
@@ -13,6 +19,7 @@ typedef struct {
   unsigned char e_ident[16];
   ElfHalf e_type;
   ElfHalf e_machine;
+  ElfWord e_version;
   ElfAddr e_entry;
   ElfOff e_phoff;
   ElfOff e_shoff;
