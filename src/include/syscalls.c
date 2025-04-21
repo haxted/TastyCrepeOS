@@ -12,7 +12,6 @@ void syscall(syscallFrame *frame) {
 		case 2: clrscr(); break;
 		case 3: clrscrC((unsigned char)frame->esi); break;
 		case 4: printr((char)frame->esi, (int)frame->edx, (int)frame->ecx, (unsigned char)frame->ebx); break;
-		case 5: KbdTakeInput(); break;
 		default: panic("No/unknown syscall"); break;
 	}
 
