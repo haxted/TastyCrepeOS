@@ -44,7 +44,7 @@
 #define ATA4_CR 0x366
 
 namespace Disk {
-  void ata_rdisk(int lba, int sects, unsigned int mem);
+  int ata_rdisk(int lba, int sects, unsigned int mem);
   void ata_reset();
   void ata_wdisk(unsigned char drive, int lba, int sects, unsigned int mem);
   void ata_init();

@@ -16,7 +16,7 @@ extern "C" void jmpkrnl();
 
 extern "C" void bmain() {
   Term::clrscr();
-  Idt.initIDT();
+  initIDT();
   Term::term_outs("Entered C++ section");
   Term::term_outc('\n');
   Disk::ata_init();

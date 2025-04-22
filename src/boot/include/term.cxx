@@ -14,7 +14,7 @@ void term_outc(char c) {
 
 void term_outs(string str) {
   while (str) {
-    term_outc(str++);
+    term_outc(*str++);
   }
 }
 void clrscr() {

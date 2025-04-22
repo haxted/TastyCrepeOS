@@ -2,12 +2,10 @@
 static IDTEntry idt[IDT_SZ];
 IDTPtr idtptr;
 
-class IDT {
-  public:
-    void setEntry(unsigned int index, uint32_t handler, int type) {
+    void setEntry(unsigned int index, void* handler, int type) {
       Term::term_outc('\n');
       Term::term_outs("Setting IDT entry");
-      idtentry* desc = &idt[index];
+      IDTEntry* desc = &idt[index];
       desc->offset1 = (uint32_t)handler & 0xFFFF;
       desc->selector = 0x08;
       desc->type = type;
@@ -25,6 +23,3 @@ class IDT {
       }
       lidt(&idtptr);
     }
-};
-
-
