@@ -1,7 +1,4 @@
-#pragma once
-
-void hlt() {
-  for(;;){
-    __asm__("cli; hlt");
-  }
-}
+#ifndef HLTH
+#define HLTH
+void hlt();
+#endif

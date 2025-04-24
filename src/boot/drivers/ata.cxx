@@ -10,7 +10,7 @@ int __SECTORS;
 void ata_init() {
   setEntry(14, (uint32_t*)atas, 0x8E);
 }
-void irq14handler() {
+extern "C" void irq14handler() {
   while(inb(ATA_CMD) & 0x80);
   if(__DISK_READ) {
   for(int i = 0; i < __SECTORS * 512; i++) {

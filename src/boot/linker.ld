@@ -1,7 +1,7 @@
 ENTRY(_start)
 
 SECTIONS {
-	. = 1M;
+	. = 0x9a00;
 
 	.text ALIGN(4K) : {*(.text)}
 	.data ALIGN(4K) : {*(.data)}

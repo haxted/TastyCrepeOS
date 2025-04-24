@@ -1,5 +1,4 @@
-#ifndef _ATA_HPP
-#define _ATA_HPP
+#pragma once
 #include "idt.hxx"
 #include "io.hxx"
 
@@ -42,14 +41,13 @@
 #define ATA4_DH 0x16e
 #define ATA4_CMD 0x16f
 #define ATA4_CR 0x366
+extern "C" void atas();
 
 namespace Disk {
   int ata_rdisk(int lba, int sects, unsigned int mem);
   void ata_reset();
   void ata_wdisk(unsigned char drive, int lba, int sects, unsigned int mem);
   void ata_init();
-  extern void atas();
 };
 
-#endif
 

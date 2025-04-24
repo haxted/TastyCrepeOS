@@ -1,6 +1,3 @@
-#ifndef _MEMCPY_HPP
-#define _MEMCPY_HPP
+#pragma once
 
 void memcpy(void *dest, const void *src, unsigned int n);
-
-#endif

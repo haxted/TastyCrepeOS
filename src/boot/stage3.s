@@ -1,18 +1,18 @@
 [bits 32]
 [extern bmain]
 section .text
+global _start
 mov edi, 0xb8000
 
-main:
+_start:
 
-        bprint welkom
-        bprint NL
+        call bmain
+        jmp $
 	
 
 
 
 
-%include "src/boot/term.inc"
 
 section .data
 welkom: db "Welcome to HorrifyingBoot v0.1-0, for TastyCrepeOS", 0

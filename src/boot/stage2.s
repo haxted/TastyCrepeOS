@@ -13,27 +13,10 @@ sti
 mov ah, 0x00
 mov al, 0x03
 int 0x10
-; struc elfhdr
-;	e_ident: db 16 dup(0)
-;	e_type: resb 2
-;	e_machine: resb 2
-;	e_version: resd 1
-;	e_entry: resd 1
-;	e_phoff: resd 1
-;	e_shoff: resd 1
-;	e_flags: resd 1
-;	e_ehsize: resb 2
-;	e_phentsize: resb 2
-;	e_phnum: resb 2
-;	e_shentsize: resb 2
-;	e_shnum: resb 2
-;	e_shstrndx: resb 2
-;endstruc
-
 
 jmp _start
 elfR:
-	cmp byte [bx],  0x7f
+	cmp dword [bx], 0x464C457F ; 7F 45 4C 46 (7F "ELF")
 	jne err
 	je isELF
 
@@ -49,35 +32,36 @@ isELF:
 	cmp word [bx], 1
 	jne err
 
-	mov dword eax, [bx]
+	 o32 mov dword eax, [bx]
 
 	add bx, 4
-	mov dword ecx, [bx]
+	o32 mov dword ecx, [bx]
 
-	mov edx, eax
-	add edx, ecx ; edx now contains the location of phdr
+	o32 mov edx, eax
+	o32 add edx, ecx ; edx now contains the location of phdr
 
-	mov ebx, 0x9a00
-	add ebx, 0x2a
-	push eax
-	mov word ax, [ebx]
+	o32 mov ebx, 0x9a00
+	o32 add ebx, 0x2a
+	o32 push eax
+	a32 o16 mov word ax, [ebx]
+	o32 sub ebx, 4
 .loop:
 	cmp ax, 0
 	je .done
 
-	mov dword esi, [edx]
-	add edx, 4
+	a32 o32 mov dword esi, [edx]
+	o32 add edx, 4
 
-	mov dword edi, [edx]
-	add edx, 8
-
-
+	a32 o32 mov dword edi, [edx]
+	o32 add edx, 8
 
 
-	mov dword ecx, [edx]
-	mov edx, eax
 
-	sub edx, 12
+
+	a32 o32 mov dword ecx, [edx]
+	o32 mov edx, eax
+
+	o32 sub edx, 12
 	
 
 	rep movsb
@@ -87,20 +71,9 @@ isELF:
 	jmp .loop
 
 	
-.done: pop eax
-
-
-
-
-
-	
-
-
-
-
-
-	
-
+.done:
+	pop eax
+	jmp pmode
 
 
 
@@ -108,9 +81,16 @@ isELF:
 
 
 _start:
+	mov si, chs
+	call print
+	mov ah, 0x00
+	int 16h
+	call sg2_804617
+
+	
 	mov ah, 0x02
-	mov cl, 3
-	mov al, 4
+	mov cl, 4
+	mov al, 53
 	mov dh, 0
 	mov ch, 0
 	mov dl, 0x00
@@ -121,10 +101,82 @@ _start:
 err:
 	hlt
 	jmp err
+sg2_804617:
+	push ax
+	add ax, 45
+	xchg ax, ax
+	sub ax, 45
+	push bx
+	mov bx, 67
+	mul bx
+	pop bx
+	pop ax
+	mov ax, sg2_6648
+	xchg ax, si
+	call print
+	push di
+	add di, 4
+	mov ax, 5
+	mul di
+	sub di, 20
+	add di, 40
+	mov ax, 0
+	mul di
+	nop
+	nop
+	pop di
+	push ax
+	mov ax, 128
+	mul cx
+	pop ax
+	cmp al, 67
+	je .sg2_489
+
+	cmp al, 71
+	je .sg2_C4
+.sg2_489: ret
+.sg2_C4:
+	mov si, sg2_TON618
+	call print
+	mov ah, 0b00000000000000
+	push bx
+	mov bx, 22
+	int 22
+	pop bx
+	cmp al, 'H'
+	je .ok
+	jne .hahadumbass
+.ok:
+	mov si, sg2_LOSER
+	call print
+	hlt
+	jmp $-2
+.hahadumbass:
+	mov si, sg2_IDIOT
+	call print
+	int 16h
+	jmp 0xDEAD
+sg2_IDIOT: db "you lost dumdum", 0
+sg2_LOSER: db "you won now go get a job", 0
+sg2_6648:  db "what you want", 0b00000000000000000
+sg2_kys:   db "this is just to annoy you", 0
+sg2_TON618: db "the completely random guessing game gfy: ", 0
+	
+	
+	
+print:
+	lodsb
+	cmp al, 0
+	je .done
+	mov ah, 0x0E
+	int 10h
+	jmp print
+.done: ret
 
 pmode:
 	cli
-	lgdt [gdt_descriptor]
+	lea eax, [gdt_descriptor]
+	lgdt [eax]
 	mov eax, cr0
 	or eax, 1
 	mov cr0, eax
@@ -154,6 +206,8 @@ gdt_descriptor:
         dw gdt_end - gdt_start - 1
         dd gdt_start
 
+chs: db "Press C to continue booting, press G to start some games and stuff", 0x0D, 0x0A, 0
+
 
 
 [bits 32]
@@ -169,8 +223,8 @@ relcs:
 	or al, 2
 	out 0x92, al
 
-	jmp edx
+	jmp ebx
 
 
-times 512-($-$$) db 0
+times 1024-($-$$) db 0
 
