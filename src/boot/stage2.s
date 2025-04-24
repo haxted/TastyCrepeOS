@@ -102,46 +102,22 @@ err:
 	hlt
 	jmp err
 sg2_804617:
-	push ax
-	add ax, 45
-	xchg ax, ax
-	sub ax, 45
-	push bx
-	mov bx, 67
-	mul bx
-	pop bx
-	pop ax
 	mov ax, sg2_6648
 	xchg ax, si
 	call print
-	push di
-	add di, 4
-	mov ax, 5
-	mul di
-	sub di, 20
-	add di, 40
-	mov ax, 0
-	mul di
-	nop
-	nop
-	pop di
-	push ax
-	mov ax, 128
-	mul cx
-	pop ax
-	cmp al, 67
+	mov ah, 0x00
+	int 16h
+	cmp al, 'c'
 	je .sg2_489
 
-	cmp al, 71
+	cmp al, 'g'
 	je .sg2_C4
 .sg2_489: ret
 .sg2_C4:
 	mov si, sg2_TON618
 	call print
-	mov ah, 0b00000000000000
-	push bx
-	mov bx, 22
-	int 22
+	mov ah, 00h
+	int 16h
 	pop bx
 	cmp al, 'H'
 	je .ok
@@ -206,7 +182,7 @@ gdt_descriptor:
         dw gdt_end - gdt_start - 1
         dd gdt_start
 
-chs: db "Press C to continue booting, press G to start some games and stuff", 0x0D, 0x0A, 0
+chs: db "Press C to continue booting, press G to start some games and stuff", 0
 
 
 
