@@ -145,22 +145,22 @@ sg2_804617:
 	pop bx
 	cmp al, 'H'
 	je .ok
-	jne .hahadumbass
+	jne .lost
 .ok:
 	mov si, sg2_LOSER
 	call print
 	hlt
 	jmp $-2
-.hahadumbass:
+.lost:
 	mov si, sg2_IDIOT
 	call print
 	int 16h
 	jmp 0xDEAD
 sg2_IDIOT: db "you lost dumdum", 0
-sg2_LOSER: db "you won now go get a job", 0
+sg2_LOSER: db "you won!", 0
 sg2_6648:  db "what you want", 0b00000000000000000
-sg2_kys:   db "this is just to annoy you", 0
-sg2_TON618: db "the completely random guessing game gfy: ", 0
+sg2_badword:   db "this is just to annoy you", 0
+sg2_TON618: db "the completely random guessing game: ", 0
 	
 	
 	
