@@ -3,7 +3,7 @@
 ElfHdr hdr;
 ElfPhdr phdr;
 
-int elf_load(uint32_t elf_memlocation) {
+ int elf_load(uint32_t elf_memlocation) {
   elf_memlocation += 16;
   uint32_t* addr = (uint32_t*)elf_memlocation;
   hdr.e_type = *(uint16_t*)addr;

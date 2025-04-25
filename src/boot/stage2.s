@@ -90,7 +90,7 @@ _start:
 	
 	mov ah, 0x02
 	mov cl, 4
-	mov al, 53
+	mov al, 60
 	mov dh, 0
 	mov ch, 0
 	mov dl, 0x00

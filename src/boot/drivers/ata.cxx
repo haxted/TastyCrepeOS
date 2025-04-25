@@ -1,5 +1,4 @@
 #include "../include/ata.hxx"
-using namespace Io;
 
 namespace Disk {
 bool __DISK_READ;

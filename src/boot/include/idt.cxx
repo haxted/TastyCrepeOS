@@ -1,8 +1,10 @@
 #include "idt.hxx"
 static IDTEntry idt[IDT_SZ];
 IDTPtr idtptr;
+extern "C" void lidt(IDTPtr* ptr);
 
-    void setEntry(unsigned int index, void* handler, int type) {
+
+    extern "C" void setEntry(unsigned int index, void* handler, int type) {
       Term::term_outc('\n');
       Term::term_outs("Setting IDT entry");
       IDTEntry* desc = &idt[index];
@@ -12,7 +14,7 @@ IDTPtr idtptr;
       desc->zer0 = 0x00;
       desc->offset2 = (uint32_t)handler >> 16;
     }
-    void initIDT() {
+    extern "C" void initIDT() {
       Term::term_outs("Initializing IDT...");
       Term::term_outc('\n');
       idtptr.base = (unsigned long)&idt[0];
@@ -23,3 +25,5 @@ IDTPtr idtptr;
       }
       lidt(&idtptr);
     }
+
+

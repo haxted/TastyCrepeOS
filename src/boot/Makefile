@@ -27,9 +27,10 @@ asm:
 	nasm -fbin   ./stage2.s -o build/stage2.bin
 	nasm -felf32   ./stage3.s -o build/stage3.s.o
 	nasm -felf32   ./jmpkrnl.s -o build/jmpkrnl.o
+	nasm -felf32   ./drivers/kbd.s -o build/kbd.s.o
 
 link:
-	ld.gold -Tlinker.ld -z noexecstack -o build/hfboot.elf build/*.o build/drivers/*.o build/include/*.o
+	ld.lld -Tlinker.ld  -z noexecstack -o build/hfboot.elf build/*.o build/drivers/*.o build/include/*.o -v --verbose --trace --cref --Map=map.map
 flpblt:
 	dd if=/dev/zero of=floppy.img bs=512 count=2880
 	dd if=build/stage1.bin of=floppy.img seek=0 bs=512 conv=notrunc

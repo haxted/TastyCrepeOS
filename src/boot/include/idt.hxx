@@ -16,7 +16,8 @@ typedef struct {
   uint32_t base;
 } __attribute__((packed)) IDTPtr;
 
-extern "C" void lidt(IDTPtr* idtptr);
+extern "C" {
 void initIDT();
 void setEntry(unsigned int index, void* handler, int type);
+}
 #endif
