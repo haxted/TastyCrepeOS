@@ -20,10 +20,11 @@ extern "C" void lidt(IDTPtr* ptr);
       idtptr.base = (unsigned long)&idt[0];
       idtptr.limit = (uint16_t)sizeof(IDTEntry) * IDT_SZ - 1;
 
-      for(int i = 0; i < 32; i++) {
+      for(int i = 0; i < IDT_SZ; i++) {
         setEntry(i, 0, 0x8E);
       }
       lidt(&idtptr);
+      Term::term_outs("IDT loaded");
     }
 
 

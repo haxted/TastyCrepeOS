@@ -8,13 +8,11 @@
 #include <syscalls.h>
 
 void kmain(void) {
+	NewFont();
 	initidt();
 	initsyscalls();
 	clrscr();
-	NewFont();
 	welcome();
-	
-
 	for(;;);
 
 }
@@ -30,7 +28,7 @@ void panic(const char *r) {
 
 int welcome(void) {
 	kputs("Welcome to the TastyCrepeOS kernel!");
-        kprintf("Build number ");
+        kprintf("Build number: ");
         kputs(TC_BUILD);
         kprintf("Version: ");
         kputs(TC_VER);

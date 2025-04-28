@@ -5,7 +5,13 @@ A small kernel made in Assembly (a bit of a lot), C (kernel) and C++ (bootloader
 First, read BUILD.md. Second, grab your favorite floppy disk and `dd` the built files manually. I will make an installation program but not now.
 
 # Usage
-Just use it.
+Insert that floppy disk intonr your favorite 32-bit PC (make sure the kernel is on an ATA hard drive) then boot.
+
+# Minimum Requirements
+CPU: i686/Pentium Pro+
+GPU: Maybe
+RAM: 16M
+Sanity: 68
 
 # Contributors
 Me, LLVM, I, and myself.
