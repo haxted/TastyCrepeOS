@@ -4,9 +4,6 @@
 #define STDLIB_H
 
 
-#define NULL ((void*)0)
-
-
 
 
 #define MEMPOOL_SZ (1024 * 1024)

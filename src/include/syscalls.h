@@ -4,6 +4,8 @@
 #include <kernel.h>
 #include <stdio.h>
 #include <stdint.h>
+#include <string.h>
+#include <io.h>
 
 typedef struct {
 	uint32_t eax;

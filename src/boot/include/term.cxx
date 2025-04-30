@@ -1,7 +1,7 @@
 #include "term.hxx"
 
 namespace Term {
-char *vidmem = (char *)0xB8000;
+char *vidmem = (char*)0xB8000;
 int pos = 0;
 
 void term_outc(char c) {
@@ -13,7 +13,7 @@ void term_outc(char c) {
 }
 
 void term_outs(string str) {
-  while (str) {
+  while(str) {
     term_outc(*str++);
   }
 }

@@ -17,13 +17,13 @@ void setIDTEntry(uint8_t index, uint32_t handlr, uint8_t type) {
 }
 
 void initidt() {
-	kputs("HEY HEY HEY WE GONNA INIT THE IDT, IF THERES ANY PROBLEMS CONTACT rakoczijohnii@gmail.com");
+	kputs("Initializing IDT...");
 	idt_ptr.base = (unsigned long)&idt[0];
 	idt_ptr.limit = (uint16_t)sizeof(idtentry) * IDT_SIZE - 1;
 	
 
-	for(int i = 0; i < 32; ++i){
-		setIDTEntry(i, 0, 0x8e);
+	for(int i = 0; i < 256; ++i){
+		setIDTEntry(i, NULL, 0x8e);
 	}
 	setIDTEntry(0x0d, (uint32_t)gpfhandle, 0x8f);
 	loadidt(&idt_ptr);

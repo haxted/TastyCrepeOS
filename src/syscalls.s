@@ -3,6 +3,7 @@ global int80hstb
 
 
 int80hstb:
+pushad
 	push ds
 	push es
 	push gs
@@ -10,7 +11,6 @@ int80hstb:
 	push ss
 	mov eax, [esp+20]
 	push eax
-	pushad
 
 	mov ax, 0x10
 	mov ds, ax
@@ -24,9 +24,9 @@ int80hstb:
 
 	popad
 	pop ds
-	pop fs
 	pop es
 	pop gs
+	pop fs
 	pop ss
 	iret
 

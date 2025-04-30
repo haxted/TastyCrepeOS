@@ -8,3 +8,4 @@ src/boot/build
 src/boot/log
 src/boot/floppy.img 
 src/boot/map.map
+.vscode/
