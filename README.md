@@ -7,6 +7,8 @@ First, read BUILD.md. Second, grab your favorite floppy disk and `dd` the built 
 # Usage
 Insert that floppy disk intonr your favorite 32-bit PC (make sure the kernel is on an ATA hard drive) then boot.
 
+
+
 # Minimum Requirements
 CPU: i686/Pentium Pro+
 GPU: Maybe
@@ -17,4 +19,5 @@ Sanity: 68
 Me, LLVM, I, and myself.
 
 # WARNING
-Do not go into the dev branch as it is outdated. 
+Do not go into the dev branch as it is outdated.
+And if you really need to boot off of a hard drive patch stage2 and stage1 to use DL: 0x80 instead of 0x00
