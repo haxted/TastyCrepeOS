@@ -1,4 +1,7 @@
 #include <stdio.h>
+extern void _setupVGA();
+extern void _restore();
+
 static const unsigned char font[] = {
 #embed "font.bin"
 };
@@ -40,9 +43,11 @@ void clrscr() {
 }
 
 void NewFont() {
+	_setupVGA();
 	for(int x = 0; x < 4096; x++) {
 		fontmem[x] = font[x];
 	}
+	_restore();
 }
 
 void kprintf(const char* str) {
