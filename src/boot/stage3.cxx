@@ -13,7 +13,6 @@ Made by: haxted
 #include "include/kbd.hxx"
 #include <iso646.h>
 
-extern "C" void jmpkrnl();
 
 extern "C" void bmain() {
   Term::clrscr();
@@ -28,7 +27,7 @@ extern "C" void bmain() {
   Term::term_outs("HorrifyingBoot v0.1.1");
   Term::term_outc('\n');
   elf_load(KRNL_LD);
-  jmpkrnl();
+  jmpelf();
   
 }
 

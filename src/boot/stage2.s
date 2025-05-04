@@ -32,36 +32,36 @@ isELF:
 	cmp word [bx], 1
 	jne err
 
-	 o32 mov dword eax, [bx]
+	  mov dword eax, [bx]
 
 	add bx, 4
-	o32 mov dword ecx, [bx]
+	 mov dword ecx, [bx]
 
-	o32 mov edx, eax
-	o32 add edx, ecx ; edx now contains the location of phdr
+	 mov edx, eax
+	 add edx, ecx ; edx now contains the location of phdr
 
-	o32 mov ebx, 0x9a00
-	o32 add ebx, 0x2a
-	o32 push eax
-	a32 o16 mov word ax, [ebx]
-	o32 sub ebx, 4
+	 mov ebx, 0x9a00
+	 add ebx, 0x2a
+	 push eax
+	  mov word ax, [ebx]
+	 sub ebx, 4
 .loop:
 	cmp ax, 0
 	je .done
 
-	a32 o32 mov dword esi, [edx]
-	o32 add edx, 4
+	  mov dword esi, [edx]
+	 add edx, 4
 
-	a32 o32 mov dword edi, [edx]
-	o32 add edx, 8
-
-
+	  mov dword edi, [edx]
+	 add edx, 8
 
 
-	a32 o32 mov dword ecx, [edx]
-	o32 mov edx, eax
 
-	o32 sub edx, 12
+
+	  mov dword ecx, [edx]
+	 mov edx, eax
+
+	 sub edx, 12
 	
 
 	rep movsb
@@ -198,6 +198,9 @@ relcs:
 	in al, 0x92
 	or al, 2
 	out 0x92, al
+	xchg al, al
+	mov al, al
+	nop
 
 	jmp ebx
 

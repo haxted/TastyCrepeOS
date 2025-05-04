@@ -23,3 +23,14 @@ void memcpyd(void* dest, const void* src, int sz) {
         d[i] = s[i];
     }
 }
+
+// lazies
+
+int peek(uint32_t addr) {
+    return *(uint32_t*)addr;
+}
+
+void poke(uint32_t addr, uint8_t val) {
+    uint8_t* addr2 = (uint8_t*)addr;
+    addr2[0] = val;
+}

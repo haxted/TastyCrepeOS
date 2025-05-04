@@ -43,6 +43,6 @@ typedef struct {
   ElfWord p_align;
 } __attribute__((packed)) ElfPhdr;
 
- int elf_load(uint32_t elf_memlocation);
-
+int elf_load(uint32_t elf_memlocation);
+void jmpelf();
 

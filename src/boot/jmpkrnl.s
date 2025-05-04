@@ -1,4 +1,5 @@
 global jmpkrnl
 
 jmpkrnl:
-        jmp 0x100000
+        mov eax, [esp+4]
+        jmp eax
