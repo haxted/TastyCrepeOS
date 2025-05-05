@@ -1,5 +1,6 @@
 #include <stdint.h>
 #include <kernel.h>
+#include <stddef.h>
 #ifndef STDLIB_H
 #define STDLIB_H
 

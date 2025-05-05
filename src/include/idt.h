@@ -22,7 +22,7 @@ typedef struct idtptr {
 
 extern void gpfhandle();
 
-void setIDTEntry(uint8_t index, uint32_t handlr, uint8_t type);
+void setIDTEntry(uint8_t index, uint32_t* handlr, uint8_t type);
 
 extern void loadidt(idtptr* idt_ptr);
 void initidt();

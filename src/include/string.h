@@ -1,5 +1,4 @@
-#ifndef STRING_H
-#define STRING_H
+#pragma once
 #include <stdint.h>
 
 typedef const char* string;
@@ -11,5 +10,3 @@ void memcpyd(void* dest, const void* src, int sz);
 int peek(uint32_t addr);
 void poke(uint32_t addr, uint8_t val);
 
-
-#endif

@@ -17,7 +17,7 @@ void syscall(syscallFrame *frame) {
 		case 7: memcpyd((uint32_t*)frame->esi, (uint32_t*)frame->edx, frame->ecx); break; 
 		case 8: inb((uint16_t)frame->esi); break;
 		case 9: outb((uint16_t)frame->esi, (uint8_t)frame->edx); break;
-		case 10: inw((uint16_t)frame->esi, (uint16_t)frame->edx); break;
+		case 10: inw((uint16_t)frame->esi); break;
 		case 11: outw((uint16_t)frame->esi, (uint16_t)frame->edx); break;
 		default: panic("No/unknown syscall"); break;
 	}

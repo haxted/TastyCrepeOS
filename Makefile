@@ -4,7 +4,7 @@ CFLAGS = -nostdlib -c -Isrc/include  -Wall -Wextra -Werror -fno-pie -fno-pic  -f
 
 
 all:
-	mkdir -p build/
+	mkdir build
 	$(CC) $(CFLAGS) src/include/stdio.c -o build/stdio.o
 	$(CC) $(CFLAGS) src/include/io.c -o build/io.o
 	$(CC) $(CFLAGS) src/include/stdlib.c -o build/stdlib.o
@@ -15,4 +15,7 @@ all:
 	nasm -felf32 -g src/include/idt.s -o build/idt.s.o
 	nasm -felf32 -g src/kernload.s -o build/kernload.o
 	nasm -felf32 -g src/syscalls.s -o build/syscalls.s.o
-	$(LD) -Tlinker.ld -o build/kernel.elf build/kernload.o build/kernel.o build/stdio.o build/stdlib.o build/io.o build/idt.o build/idt.s.o build/syscalls.o build/syscalls.s.o -nostdlib -z noexecstack 
+	nasm -felf32 -g src/include/vgaFont.s -o build/vgaFont.o
+	$(LD) -Tlinker.ld -o build/kernel.elf build/kernload.o build/kernel.o build/stdio.o build/stdlib.o build/io.o build/idt.o build/idt.s.o build/syscalls.o build/syscalls.s.o build/vgaFont.o build/string.o -nostdlib -z noexecstack 
+clean:
+	rmdir /s /q build

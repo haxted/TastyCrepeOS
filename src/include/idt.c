@@ -6,7 +6,7 @@
 static idtentry idt[IDT_SIZE];
 idtptr idt_ptr;
 
-void setIDTEntry(uint8_t index, uint32_t handlr, uint8_t type) {
+void setIDTEntry(uint8_t index, uint32_t* handlr, uint8_t type) {
 	kputs("Setting IDT Entry");
 	idtentry* desc = &idt[index];
 	desc->offset1 = (uint32_t)handlr & 0xffff;
@@ -22,10 +22,10 @@ void initidt() {
 	idt_ptr.limit = (uint16_t)sizeof(idtentry) * IDT_SIZE - 1;
 	
 
-	for(int i = 0; i < 256; ++i){
-		setIDTEntry(i, NULL, 0x8e);
+	for(int i = 0; i < IDT_SIZE; ++i){
+		setIDTEntry(i, 0, 0x8e);
 	}
-	setIDTEntry(0x0d, (uint32_t)gpfhandle, 0x8f);
+	setIDTEntry(0x0d, (uint32_t*)gpfhandle, 0x8f);
 	loadidt(&idt_ptr);
 }
 
