@@ -94,7 +94,7 @@ ElfPhdr phdr;
   
   return 0;
 }
-extern "C" void jmpkrnl(ElfAddr* loc);
+extern "C" void jmpkrnl(ElfAddr loc);
 void jmpelf() {
   jmpkrnl(hdr.e_entry);
 }

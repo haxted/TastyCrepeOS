@@ -1,11 +1,11 @@
 CC        := clang++
-CFLAGS    := -nostdlib -Isrc/include -Wall -Wextra  \
+CFLAGS    := -nostdlib -Iinclude -Wall -Wextra  \
              -fno-pie -fno-pic -ffreestanding -fno-stack-protector \
              -fno-strict-aliasing --target=i686-elf -g \
              -fno-omit-frame-pointer  -fno-builtin \
              -mno-red-zone -fno-exceptions  -fno-rtti -D_LIBCPP_HAS_NO_THREADS \
 			 -nodefaultlibs -nostartfiles -mno-sse -mno-avx -mno-sse2 \
-			 -mno-sse3 -mno-mmx -mno-fma
+			 -mno-sse3 -mno-mmx -mno-fma -std=c++11 -v
 
 BUILD_DIR := build
 SRCS      := $(wildcard *.cxx) $(wildcard drivers/*.cxx) $(wildcard include/*.cxx)

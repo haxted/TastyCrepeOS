@@ -1,5 +1,5 @@
 #pragma once
-#include <cstdint>
+#include <stdint.h>
 #include "memcpy.hxx"
 #include "term.hxx"
 #include "hlt.hxx"

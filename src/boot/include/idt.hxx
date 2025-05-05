@@ -1,7 +1,7 @@
 #ifndef _IDT_HPP
 #define _IDT_HPP
 #define IDT_SZ 256
-#include <cstdint>
+#include <stdint.h>
 #include "term.hxx"
 typedef struct {
   uint16_t offset1;
