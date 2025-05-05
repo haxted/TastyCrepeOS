@@ -10,14 +10,17 @@ unsigned char* fontmem = (unsigned char*)0xA0000;
 int pos = 0;
 char* bfr = (char*)0xb8000;
 void kputc(char c, uint8_t color) {
-
+	if(pos >= 80*25) {
+		clrscr();
+	} else {
 	if(c == '\n') {
 		pos += (80 - (pos % 80));
 	}
+	
 	bfr[pos * 2] = c;
 	bfr[pos * 2 + 1] = color;
 	pos++;
-
+	}
 }
 
 
@@ -35,11 +38,13 @@ void clrscrC(uint8_t color) {
 		
 			
 	}
+	pos = 0;
 }
 void clrscr() {
 	for(int i = 0; i < 80*25; ++i) {
 		kputc(' ', 0x07);
 	}
+	pos = 0;
 }
 
 void NewFont() {
