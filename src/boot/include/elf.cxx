@@ -38,7 +38,7 @@ ElfPhdr phdr;
   hdr.e_entry = *(uint32_t*)addr;
 
   switch(hdr.e_entry) {
-    case 0: Term::term_outs("Invalid entry point");
+    case 0: Term::term_outs("Invalid entry point"); hlt();
     default: return 0; break;
   }
   elf_memlocation += sizeof(ElfAddr);
