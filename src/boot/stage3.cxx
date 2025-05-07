@@ -21,7 +21,7 @@ extern "C" void bmain() {
   initIDT();
   Term::term_outs("Entered C++ section");
   Term::term_outc('\n');
-  Disk::ata_rdisk(56, 65, KRNL_LD); // Reads ehhh into uhhhh from ermmmm
+  Disk::ata_rdisk(56, 65, KRNL_LD); // Reads the kernel into memory from sector 56
   Term::term_outs("Loaded the kernel");
   Term::term_outc('\n');
   Term::term_outs("HorrifyingBoot v0.1.1");

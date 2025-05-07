@@ -83,9 +83,11 @@ void kprintf(int q, const char* str) {
 	}
 }
 
-void printr(char c, int wid, int hei, unsigned char color) {
+void printr(char c, int wid, int hei, unsigned char color, loc_t* loc) {
+	int off = (loc->x * 80 + loc->y);
 	for(int s = 0; s < wid*hei; s++) {
-		kputc(c, color);
+		bfr[off * 2] = c;
+		bfr[off * 2 + 1] = color;
 		if((s+1) % wid == 0) {
 			kputc('\n', 0);
 		}

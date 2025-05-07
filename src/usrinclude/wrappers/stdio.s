@@ -9,21 +9,17 @@ writes:
     lea esi, [esp+4]
     int 0x80
     ret
-writef:
-    mov edi, 1
-    lea esi, [esp+4]
-    int 0x80
-    ret
 writer:
-    mov edi, 4
+    mov edi, 3
     mov esi, [esp+4]
     mov edx, [esp+8]
     mov ecx, [esp+12]
     mov ebx, [esp+16]
+    mov eax, [esp+18]
     int 0x80
     ret
 clrs:
-    mov edi, 2
+    mov edi, 1
     int 0x80
     ret
 clrscol:
