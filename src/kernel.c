@@ -23,14 +23,6 @@ void kmain(string cpuid1, string cpuid2, string cpuid3) {
 
 }
 
-void panic(const char *r) {
-	clrscr();
-	kprintf("Kernel panic: ");
-	kputs(r);
-	for(;;) {	
-		__asm__("cli; hlt");
-	}
-}
 
 int welcome(void) {
 	kputs("Welcome to the TastyCrepeOS kernel!");

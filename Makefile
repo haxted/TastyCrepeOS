@@ -17,6 +17,7 @@ all:
 	nasm -felf32 -g src/kernload.s -o build/kernload.o
 	nasm -felf32 -g src/syscalls.s -o build/syscalls.s.o
 	nasm -felf32 -g src/include/vgaFont.s -o build/vgaFont.o
+	nasm -felf32 -g src/panic.s -o build/panic.o
 	$(LD) -Tlinker.ld -o $(KERNEL) build/*.o -v -V -z noexecstack 
 clean:
 	rmdir /s /q build

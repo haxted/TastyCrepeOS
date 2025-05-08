@@ -92,10 +92,10 @@ panic:
 section .data
 
 msg: db "Kernel panic: ", 0
-eaxs: "EAX: ", 0
-ebxs: "EBX: ", 0
-ecxs: "ECX: ", 0
-edxs: "EDX: ", 0
-esis: "ESI: ", 0
-edis: "EDI: ", 0
-eflagsx: "EFLAGS: ", 0
+eaxs: db "EAX: ", 0
+ebxs: db "EBX: ", 0
+ecxs: db "ECX: ", 0
+edxs: db "EDX: ", 0
+esis: db "ESI: ", 0
+edis: db "EDI: ", 0
+eflagsx: db "EFLAGS: ", 0
