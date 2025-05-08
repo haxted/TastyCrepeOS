@@ -1,5 +1,6 @@
 CC = clang
 LD = ld.lld
+KERNEL = build/kernel.elf
 CFLAGS = -nostdlib -c -Isrc/include  -Wall -Wextra -Werror -fno-pie -fno-pic  -ffreestanding  -fno-stack-protector  -fno-strict-aliasing --target=i686-elf -g -fno-omit-frame-pointer -std=c23 -fno-builtin -mno-red-zone  -fno-exceptions -fno-rtti 
 
 
@@ -16,6 +17,6 @@ all:
 	nasm -felf32 -g src/kernload.s -o build/kernload.o
 	nasm -felf32 -g src/syscalls.s -o build/syscalls.s.o
 	nasm -felf32 -g src/include/vgaFont.s -o build/vgaFont.o
-	$(LD) -Tlinker.ld -o build/kernel.elf build/kernload.o build/kernel.o build/stdio.o build/stdlib.o build/io.o build/idt.o build/idt.s.o build/syscalls.o build/syscalls.s.o build/vgaFont.o build/string.o -nostdlib -z noexecstack 
+	$(LD) -Tlinker.ld -o $(KERNEL) build/*.o -v -V -z noexecstack 
 clean:
 	rmdir /s /q build

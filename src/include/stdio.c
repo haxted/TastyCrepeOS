@@ -1,6 +1,6 @@
 #include <stdio.h>
-extern inline void _setupVGA();
-extern inline void _restore();
+extern void _setupVGA();
+extern void _restore();
 
 static const unsigned char font[] = {
 #embed "font.bin"
@@ -73,11 +73,7 @@ void kprintn(int n, char color) {
 
 }
 
-void kprintf(int q, const char* str) {
-	switch(q) {
-		case 0: break;
-		case 1: kputc('[', 0xFC); kputc('E', 0xFC); kputc(']', 0xFC); return;
-	}
+void kprintf(const char* str) {
 	while(*str) {
 		kputc(*str++, 0x07);
 	}

@@ -10,7 +10,7 @@ void syscall(syscallFrame *frame) {
 		case 0: kputs((const char*)frame->esi); break;
 		case 1: clrscr(); break;
 		case 2: clrscrC((unsigned char)frame->esi); break;
-		case 3: printr((char)frame->esi, (int)frame->edx, (int)frame->ecx, (unsigned char)frame->ebx); break;
+		case 3: printr(frame->esi, frame->edx, frame->ecx, frame->ebx, (loc_t*)frame->eax); break;
 		case 4: memcpyb((uint32_t*)frame->esi, (uint32_t*)frame->edx, frame->ecx); break;
 		case 5: memcpyw((uint32_t*)frame->esi, (uint32_t*)frame->edx, frame->ecx); break;
 		case 6: memcpyd((uint32_t*)frame->esi, (uint32_t*)frame->edx, frame->ecx); break; 

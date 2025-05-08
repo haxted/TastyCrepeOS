@@ -14,5 +14,5 @@ void clrscr();
 void clrscrC(uint8_t color);
 void kprintf(const char *str);
 void NewFont();
-void printr(char c, int wid, int hei, uint8_t color, loc_t loc);
+void printr(char c, int wid, int hei, uint8_t color, loc_t* loc);
 #endif
