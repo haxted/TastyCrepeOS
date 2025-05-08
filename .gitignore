@@ -1,4 +1,4 @@
  src/boot/map.map
  src/boot/floppy.img
- build/
- src/boot/build/
+ build/*
+ src/boot/build/*
