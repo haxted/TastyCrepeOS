@@ -7,6 +7,8 @@
 #include <io.h>
 #include <syscalls.h>
 #include <string.h>
+#include <multitasking.h>
+
 
 void kmain(string cpuid1, string cpuid2, string cpuid3) {
 	NewFont();
@@ -18,8 +20,10 @@ void kmain(string cpuid1, string cpuid2, string cpuid3) {
 	kprintf(cpuid1);
 	kprintf(cpuid2);
 	kputs(cpuid3);
-
-	for(;;);
+	kputs("Initializing Multitasking....");
+	initTasking();
+	kprintf("Initialized Multitasking");
+	yield();
 
 }
 

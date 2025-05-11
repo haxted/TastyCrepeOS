@@ -4,8 +4,15 @@
 #include <io.h>
 #include <kernel.h>
 
+int initAta();
+int irq14();
+extern void irq14_S();
 
-#define PRIMARY 0x1F0
+int ataReadDisk(int bus, int drive, int sect, int lba, size_t mem); // DEVNOTES: esi, edx, ecx, ebx, eax
+int ataWriteDisk(int bus, int drive, int sect, int lba, size_t mem);
+int ataFormatZ(int bus, int drive);
+bool ataDriveExists(int bus, int drive);
+
 
 #endif
 
