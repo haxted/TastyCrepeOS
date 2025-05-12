@@ -6,6 +6,8 @@ mov edi, 0xb8000
 
 _start:
 
+        mov eax, [0x8400]
+        push eax
         call bmain
         jmp $
 	

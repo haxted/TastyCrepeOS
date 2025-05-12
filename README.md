@@ -21,3 +21,5 @@ Me, LLVM, I, and myself.
 # WARNING
 Do not go into the dev branch as it is outdated.
 And if you really need to boot off of a hard drive patch stage2 and stage1 to use DL: 0x80 instead of 0x00
+This project uses the following libraries:
+FatFs

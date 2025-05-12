@@ -14,7 +14,7 @@ Made by: haxted
 #include <iso646.h>
 
 
-extern "C" void bmain() {
+extern "C" void bmain(uint32_t framebuff) {
   Term::clrscr();
   Disk::ata_init();
   initkbd();

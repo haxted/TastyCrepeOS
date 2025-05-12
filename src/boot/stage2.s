@@ -73,6 +73,22 @@ isELF:
 	
 .done:
 	pop eax
+	mov ax, 0x4f02
+	mov bx, 0x11b
+	int 0x10
+
+	mov ax, 0x4f02
+	mov bx, 0x411b
+	int 0x10
+
+	mov ax, 0x4f01
+	mov cx, 0x11b
+	mov di, 0x1000
+	int 0x10
+	mov ecx, [di+0x28]
+
+	mov [0x8400], ecx
+
 	jmp pmode
 
 
