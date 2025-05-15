@@ -11,5 +11,9 @@ void* malloc(uint32_t size) {
 }
 
 void mreset() {
-	memoff = 0;
+        memoff = 0;
+}
+
+void free(int size) {
+    memoff -= size;
 }

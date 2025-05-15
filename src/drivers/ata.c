@@ -32,3 +32,28 @@ int irq14() {
         }
     }
 }
+
+int ataReadDisk(int bus, int drive, int sect, int lba, size_t mem) {
+    _DISKRW_MEMORY = (uint8_t*)mem;
+    R = true;
+    SECTNUM = sect;
+    while(inb(0x1f7 & 128));
+    outb(0x1f2, sect);
+    outb(0x1f3, lba & 0xff);
+    outb(0x1f4, (lba >> 8) & 0xff);
+    outb(0x1f5, (lba >> 16) & 0xff);
+    outb(0x1f6, 0xE0 | ((lba >> 24) & 0x0F));
+    outb(0x1f7, 0x20);
+    if(inb(0x1f7) & 1) {
+        return 1;
+    } else {
+        R = false;
+        return 0;
+}
+
+void ataFunc(ataParam_t *param, int func) {
+    switch(func) {
+        case 0: ataReadDisk(param->bus, param->drive, param->sect, param->lba, param->mem); break;
+        default: return;
+    }
+}

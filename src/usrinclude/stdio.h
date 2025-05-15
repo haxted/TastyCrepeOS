@@ -1,5 +1,9 @@
 #pragma once
 #include <stdint.h>
+typedef struct {
+    int x;
+    int y;
+} __attribute__((packed)) loc_t;
 
 extern void writes(const char* str);
 extern void writef(const char* str);

@@ -6,6 +6,7 @@
 #include <stdint.h>
 #include <string.h>
 #include <io.h>
+#include <ata.h>
 
 typedef struct {
 	uint32_t eax;

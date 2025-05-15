@@ -4,12 +4,16 @@ ElfHdr hdr;
 ElfPhdr phdr;
 
  int elf_load(uint32_t elf_memlocation) {
+  if(hdr.e_ident[0] != 0x7f || hdr.e_ident[1] != 0x45 || hdr.e_ident[2] != 0x4C || hdr.e_ident[3] != 0x46) {
+    Term::term_outs("ELF: Wrong magic number");
+    hlt();
+  }
   elf_memlocation += 16;
   uint32_t* addr = (uint32_t*)elf_memlocation;
   hdr.e_type = *(uint16_t*)addr;
   switch(hdr.e_type) {
     case 0: return 1; Term::term_outs(ERR_NOTYPE); hlt();
-    case 1: return 1; Term::term_outs("Error: error"); hlt();
+    case 1: return 1; Term::term_outs("ELF: Error: error"); hlt();
     case 2: break;
     default: return 1; hlt();
   }
@@ -21,7 +25,7 @@ ElfPhdr phdr;
     case 0: return 3; Term::term_outs(ERR_NOMACHINE); hlt();
     case 1: return 2; Term::term_outs(ERR_WRONGARCH); hlt();
     case 2: return 2; Term::term_outs(ERR_WRONGARCH); hlt();
-    case 3: return 0; Term::term_outs("Arch ok, continuing"); break;
+    case 3: return 0; Term::term_outs("ELF: Arch ok, continuing"); break;
     default: return 2; Term::term_outs(ERR_WRONGARCH); hlt();
     
   }
@@ -31,14 +35,14 @@ ElfPhdr phdr;
 
   switch(hdr.e_version) {
     case 1: return 0; break;
-    default: Term::term_outs("Invalid elf version"); hlt();
+    default: Term::term_outs("ELF: Invalid ELF version"); hlt();
   }
   elf_memlocation += sizeof(ElfWord);
   addr = (uint32_t*)elf_memlocation;
   hdr.e_entry = *(uint32_t*)addr;
 
   switch(hdr.e_entry) {
-    case 0: Term::term_outs("Invalid entry point"); hlt();
+    case 0: Term::term_outs("ELF: Invalid entry point"); hlt();
     default: return 0; break;
   }
   elf_memlocation += sizeof(ElfAddr);

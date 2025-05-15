@@ -1,6 +1,10 @@
 org 0x7c00
 bits 16
+jmp short _start
+nop
 
+
+_start:
 cli
 mov ax, 0x00
 mov ds, ax
@@ -9,7 +13,6 @@ mov ss, ax
 mov bp, 0x7c00
 mov sp, bp
 sti
-jmp short read
 
 read:
 	mov ah, 0x02

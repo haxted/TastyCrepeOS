@@ -10,9 +10,9 @@
 #include <multitasking.h>
 
 
-void kmain(string cpuid1, string cpuid2, string cpuid3) {
-	NewFont();
-	initidt();
+void kmain(string cpuid1, string cpuid2, string cpuid3, int framebuffer_addr) {
+	framebufferaddr = (uint8_t*)framebuffer_addr;
+	initidt(); 
 	initsyscalls();
 	clrscr();
 	welcome();
@@ -22,8 +22,10 @@ void kmain(string cpuid1, string cpuid2, string cpuid3) {
 	kputs(cpuid3);
 	kputs("Initializing Multitasking....");
 	initTasking();
-	kprintf("Initialized Multitasking");
-	yield();
+	kputs("Initialized Multitasking");
+	kprintf("Framebuffer address: ");
+	kprintn(framebuffer_addr);
+	
 
 }
 
