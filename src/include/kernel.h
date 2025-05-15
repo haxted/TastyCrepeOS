@@ -1,8 +1,8 @@
 #ifndef KERNEL_H
 #define KERNEL_H
-#define TC_VER "1.1.0a"
-#define TC_BUILD "19250"
-#define TC_MOTB "Github pls remove that 50% C++ :pray:"
+#define TC_VER "1.2.0a"
+#define TC_BUILD "20250"
+#define TC_MOTB "This OS cannot be run in DOS mode."
 #include <string.h>
 
 extern void panic(const char* r);
