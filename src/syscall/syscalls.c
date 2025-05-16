@@ -10,7 +10,7 @@ void syscall(syscallFrame *frame) {
 		case 0: kputs((const char*)frame->esi); break;
 		case 1: clrscr(); break;
 		case 2: clrscrC((rgb_t*)frame->esi); break;
-		case 3: printr(frame->esi, frame->edx, frame->ecx, frame->ebx, (loc_t*)frame->eax); break;
+		case 3: printr((char)frame->esi, (int)frame->edx, (int)frame->ecx, (rgb_t*)frame->ebx, (loc_t*)frame->eax); break;
 		case 4: memcpyb((uint32_t*)frame->esi, (uint32_t*)frame->edx, frame->ecx); break;
 		case 5: memcpyw((uint32_t*)frame->esi, (uint32_t*)frame->edx, frame->ecx); break;
 		case 6: memcpyd((uint32_t*)frame->esi, (uint32_t*)frame->edx, frame->ecx); break; 
@@ -20,6 +20,7 @@ void syscall(syscallFrame *frame) {
 		case 10: outw((uint16_t)frame->esi, (uint16_t)frame->edx); break;
 		case 11: ataFunc((ataParam_t*)frame->esi, (int)frame->edx);
 		case 12: videoFunc((int)frame->esi, (videoParam_t*)frame->edx);
+		case 13: kbdFunc((int)frame->esi);
 		default: panic("No/unknown syscall"); break;
 	}
 

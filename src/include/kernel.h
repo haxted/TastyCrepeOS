@@ -1,8 +1,8 @@
 #ifndef KERNEL_H
 #define KERNEL_H
-#define TC_VER "1.2.0a"
-#define TC_BUILD "20250"
-#define TC_MOTB "This OS cannot be run in DOS mode."
+#define TC_VER "1.2.1a"
+#define TC_BUILD "2025UC"
+#define TC_MOTB "Don't forget to free after you allocate memory!"
 #include <string.h>
 
 extern void panic(const char* r);

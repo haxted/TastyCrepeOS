@@ -1,5 +1,5 @@
 global KbdTakeInputPA
-extern KbdTakeInputP
+extern KbdTakeInput
 
 KbdTakeInputPA:
 	pushad
@@ -16,7 +16,7 @@ KbdTakeInputPA:
 	mov gs, ax
 	mov ss, ax
 
-	call KbdTakeInputP
+	call KbdTakeInput
 
 	popad
 	pop ds
