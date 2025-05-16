@@ -13,11 +13,15 @@ all:
 	$(CC) $(CFLAGS) src/kernel.c -o build/kernel.o
 	$(CC) $(CFLAGS) src/syscall/syscalls.c -o build/syscalls.o
 	$(CC) $(CFLAGS) src/memory/string.c -o build/string.o
+	$(CC) $(CFLAGS) src/drivers/disk/ata.c - o build/ata.o
+	$(CC) $(CFLAGS) src/drivers/kbd/kbd.c - o build/kbd.o
 	nasm -felf32 -g src/interrupts/idt.s -o build/idt.s.o
 	nasm -felf32 -g src/kernload.s -o build/kernload.o
 	nasm -felf32 -g src/syscall/syscalls.s -o build/syscalls.s.o
-	nasm -felf32 -g src/video/vgaFont.s -o build/vgaFont.o
 	nasm -felf32 -g src/panic.s -o build/panic.o
+	nasm -felf32 -g src/disk/ata.s -o build/ata.s.o
+	nasm -felf32 -g src/kbd/kbd.s -o build/kbd.s.o
+
 	$(LD) -Tlinker.ld -o $(KERNEL) build/*.o -v -V -z noexecstack 
 clean:
 	rmdir /s /q build
