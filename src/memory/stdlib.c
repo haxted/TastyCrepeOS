@@ -1,19 +1,24 @@
 #include <stdlib.h>
 
-void* malloc(uint32_t size) {
-        if(memoff + size > MEMPOOL_SZ) {
-                panic("Memory pool overflow");
+void stackInit(stackAllocator* stack, size_t size, uint8_t* mem) {
+        stack->stackBase = mem;
+        stack->size = size;
+        stack->offset = 0;
+}
+
+void* malloc(size_t size, stackAllocator* stack) {
+        if(stack->offset + size > stack->size) {
+                panic("Stack allocator size overflow");
                 return NULL;
         }
-        void* MLC_PTR = &MEMPOOL[memoff];
-        memoff += size;
-        return MLC_PTR;
+        void* memptr = stack->base + stack->offset;
+        stack->offset += size;
+        return memptr;
 }
 
-void mreset() {
-        memoff = 0;
-}
-
-void free(int size) {
-    memoff -= size;
+void free(stackAllocator* stack, size_t size) {
+        if(size > stack->offset) {
+                return;
+        }
+        stack->offset -= size;
 }

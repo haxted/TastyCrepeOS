@@ -85,7 +85,7 @@ isELF:
 	mov cx, 0x11b
 	mov di, 0x1000
 	int 0x10
-	mov ecx, [di+0x28]
+	mov ecx, [di]
 
 	mov [0x8400], ecx
 
@@ -141,13 +141,12 @@ sg2_804617:
 .ok:
 	mov si, sg2_LOSER
 	call print
-	hlt
-	jmp $-2
+	ret
 .lost:
 	mov si, sg2_IDIOT
 	call print
 	int 16h
-	jmp 0xDEAD
+	ret
 sg2_IDIOT: db "you lost!", 0
 sg2_LOSER: db "you won!", 0
 sg2_6648:  db "what you want", 0b00000000000000000

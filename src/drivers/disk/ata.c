@@ -42,7 +42,7 @@ int ataReadDisk(int bus, int drive, int sect, int lba, size_t mem) {
     outb(0x1f3, lba & 0xff);
     outb(0x1f4, (lba >> 8) & 0xff);
     outb(0x1f5, (lba >> 16) & 0xff);
-    outb(0x1f6, 0xE0 | ((lba >> 24) & 0x0F));
+    outb(0x1f6, drive | ((lba >> 24) & 0x0F));
     outb(0x1f7, 0x20);
     if(inb(0x1f7) & 1) {
         return 1;

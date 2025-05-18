@@ -4,12 +4,16 @@
 #ifndef STDLIB_H
 #define STDLIB_H
 
+typedef struct {
+    uint8_t* stackBase;
+    size_t offset;
+    size_t size;
+} __attribute__((packed)) stackAllocator;
 
 
 
-#define MEMPOOL_SZ (1024 * 1024)
-static int MEMPOOL[MEMPOOL_SZ];
-static uint32_t memoff = 0;
 
-void* malloc(uint32_t size);
+void stackInit(stackAllocator* stack, size_t size);
+void* malloc(size_t size, stackAllocator* stack);
+void free(stackAllocator* stack, size_t size);
 #endif
