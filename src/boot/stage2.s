@@ -85,7 +85,7 @@ isELF:
 	mov cx, 0x11b
 	mov di, 0x1000
 	int 0x10
-	mov ecx, [di]
+	mov ecx, [di+0x28]
 
 	mov [0x8400], ecx
 
