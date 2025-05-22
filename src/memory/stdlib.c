@@ -11,7 +11,7 @@ void* malloc(size_t size, stackAllocator* stack) {
                 panic("Stack allocator size overflow");
                 return NULL;
         }
-        void* memptr = stack->base + stack->offset;
+        void* memptr = stack->stackBase + stack->offset;
         stack->offset += size;
         return memptr;
 }

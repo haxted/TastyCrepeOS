@@ -18,7 +18,7 @@ panic:
 
 
     push eax
-    call kprintn
+;    call kprintn
 
     push 0
     call kputs
@@ -28,7 +28,7 @@ panic:
     call kprintf
 
     push ebx
-    call kprintn
+ ;   call kprintn
     
     push 0
     call kputs
@@ -38,7 +38,7 @@ panic:
     call kprintf
 
     push ecx
-    call kprintn
+  ;  call kprintn
     
     push 0
     call kputs
@@ -48,7 +48,7 @@ panic:
     call kprintf
 
     push edx
-    call kprintn
+   ; call kprintn
 
     push 0
     call kputs
@@ -58,7 +58,7 @@ panic:
     call kprintf
 
     push esi
-    call kprintn
+    ;call kprintn
 
     push 0
     call kputs
@@ -68,7 +68,7 @@ panic:
     call kprintf
 
     push edi
-    call kprintn
+    ;call kprintn
 
     push 0
     call kputs
@@ -78,7 +78,7 @@ panic:
     call kprintf
 
     pushfd
-    call kprintn
+    ;call kprintn
 
     push 0
     call kputs

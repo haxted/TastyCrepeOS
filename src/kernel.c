@@ -21,10 +21,10 @@ void kmain(string cpuid1, string cpuid2, string cpuid3, int framebuffer_addr) {
 	kprintf(cpuid2);
 	kputs(cpuid3);
 	kputs("Initializing Multitasking....");
-	initTasking();
+	initTasks();
 	kputs("Initialized Multitasking");
-	kprintf("Framebuffer address: ");
-	kprintn(framebuffer_addr);
+	//kprintf("Framebuffer address: ");
+	//kprintn(framebuffer_addr);
 	
 
 }

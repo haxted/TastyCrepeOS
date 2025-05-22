@@ -27,8 +27,8 @@ typedef struct {
 void kputs(const char *str);
 void kputc(char c, rgb_t* color, loc_t* loc);
 void clrscr();
-int putpx(loc_t loc, rgb_t rgb);
-void clrscrC(uint8_t color);
+int putpx(loc_t* loc, rgb_t* rgb);
+void clrscrC(rgb_t* rgb);
 void kprintf(const char *str);
 void printr(char c, int wid, int hei, rgb_t* color, loc_t* loc);
 void videoFunc(int func, videoParam_t* params);

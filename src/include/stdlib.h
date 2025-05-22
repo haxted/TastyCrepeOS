@@ -13,7 +13,7 @@ typedef struct {
 
 
 
-void stackInit(stackAllocator* stack, size_t size);
+void stackInit(stackAllocator* stack, size_t size, uint8_t* mem);
 void* malloc(size_t size, stackAllocator* stack);
 void free(stackAllocator* stack, size_t size);
 #endif

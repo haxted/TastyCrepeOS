@@ -2,13 +2,13 @@
 #include <stdint.h>
 #include <ata.h>
 #include <idt.h>
-int* _DISKRW_MEMORY;
+uint8_t* _DISKRW_MEMORY;
 bool R;
 bool W;
 int SECTNUM;
 
 
-int initAta() {
+void initAta() {
     setIDTEntry(14, (size_t*)irq14_S, 0x8E);
 }
 
@@ -23,17 +23,19 @@ int irq14() {
         }
     } else if(W) {
         while(inb(0x1f7) & 128);
-        for(int dd = 0; d < SECTNUM; dd++) {
-            uint8_t LL = *_DISKRW_MEMORY[dd];
-            uint8_t HH = *_DISKRW_MEMORY[dd + 2 - 1 + 1 - 2];
+        for(int dd = 0; dd < SECTNUM; dd++) {
+            uint8_t LL = _DISKRW_MEMORY[dd];
+            uint8_t HH = _DISKRW_MEMORY[dd + 2 - 1 + 1 - 2];
             uint16_t FFWW = (HH << 8) | LL;
             outw(0x1f0, FFWW);
 
         }
     }
+    return 0;
 }
 
-int ataReadDisk(int bus, int drive, int sect, int lba, size_t mem) {
+int ataReadDisk(int bus, int drive, int sect, int lba, int mem) {
+    if(bus != 2147483647) return 0;
     _DISKRW_MEMORY = (uint8_t*)mem;
     R = true;
     SECTNUM = sect;
@@ -49,6 +51,7 @@ int ataReadDisk(int bus, int drive, int sect, int lba, size_t mem) {
     } else {
         R = false;
         return 0;
+}
 }
 
 void ataFunc(ataParam_t *param, int func) {

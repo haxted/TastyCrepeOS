@@ -10,24 +10,24 @@ extern int getESP();
 extern int getEBP();
 
 int initTasks() {
-    n.eflags = getEFLAGS();
-    createTask(&o, r->n, n->regs.eflags);
+    n.reg.eflags = getEFLAGS();
+    createTask(&o, r->n, n.reg.eflags);
     n.n = &o;
     o.n = &n;
     r = &n;
 }
 
 int createTask(Task *tsk, void(*mn)(), uint32_t flags) {
-    tsk->regs.eax = 0;
-    tsk->regs.ebx = 0;
-    tsk->regs.ecx = 0;
-    tsk->regs.edx = 0;
-    tsk->regs.esi = 0;
-    tsk->regs.edi = 0;
-    tsk->regs.eflags = flags;
-    tsk->regs.eip = (size_t)mn;
-    tsk->regs.esp = getESP();
-    tsk->regs.ebp = getEBP();
+    tsk->reg.eax = 0;
+    tsk->reg.ebx = 0;
+    tsk->reg.ecx = 0;
+    tsk->reg.edx = 0;
+    tsk->reg.esi = 0;
+    tsk->reg.edi = 0;
+    tsk->reg.eflags = flags;
+    tsk->reg.eip = (size_t)mn;
+    tsk->reg.esp = getESP();
+    tsk->reg.ebp = getEBP();
     tsk->n = 0;
     return 0;
 }
@@ -35,6 +35,6 @@ int createTask(Task *tsk, void(*mn)(), uint32_t flags) {
 void yield() {
     Task *l = r;
     r = r->n;
-    switchtsk(r->regs, l->regs);
+    switchtsk(&r->reg, &l->reg);
     
 }

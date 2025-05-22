@@ -5,7 +5,7 @@
 #include <kernel.h>
 #include <stdio.h>
 
-int initAta();
+void initAta();
 int irq14();
 extern void irq14_S();
 typedef struct {
@@ -16,8 +16,8 @@ typedef struct {
     int mem;
 } __attribute__((packed)) ataParam_t;
 
-int ataReadDisk(int bus, int drive, int sect, int lba, size_t mem); // DEVNOTES: esi, edx, ecx, ebx, eax
-int ataWriteDisk(int bus, int drive, int sect, int lba, size_t mem);
+int ataReadDisk(int bus, int drive, int sect, int lba, int mem); // DEVNOTES: esi, edx, ecx, ebx, eax
+int ataWriteDisk(int bus, int drive, int sect, int lba, int mem);
 int ataFormatZ(int bus, int drive);
 bool ataDriveExists(int bus, int drive);
 void ataFunc(ataParam_t *param, int func);
